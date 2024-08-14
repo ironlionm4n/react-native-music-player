@@ -6,12 +6,23 @@ import {spacing} from '../constants/dimensions';
 import {fontFamilies, fontSizes} from '../constants/fonts';
 import SongCard from '../components/SongCard';
 import SongCarousel from '../components/SongCarousel';
+import FloatingPlayer from '../components/FloatingPlayer';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
       <Header />
-      <SongCarousel headerText="Recommended for you" />
+      <FlatList
+        data={[
+          {headerText: 'Recommended for you'},
+          {headerText: 'My Playlist'},
+          {headerText: 'Recently Played'},
+          {headerText: 'Top Charts'},
+        ]}
+        renderItem={item => <SongCarousel headerText={item.item.headerText} />}
+        contentContainerStyle={{paddingVertical: spacing.large}}
+      />
+      <FloatingPlayer />
     </View>
   );
 };

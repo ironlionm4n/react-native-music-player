@@ -12,14 +12,14 @@ interface SongCarouselProps {
 
 const SongCarousel = ({headerText}: SongCarouselProps) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{headerText}</Text>
       <FlatList
         data={[1, 2, 3, 4, 5]}
         renderItem={() => <SongCard />}
         horizontal
         showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{width: spacing.medium}} />}
+        ItemSeparatorComponent={() => <View style={{width: spacing.large}} />}
         contentContainerStyle={{paddingHorizontal: spacing.medium}}
       />
     </View>
@@ -29,6 +29,9 @@ const SongCarousel = ({headerText}: SongCarouselProps) => {
 export default SongCarousel;
 
 const styles = StyleSheet.create({
+  container: {
+    height: 400,
+  },
   title: {
     fontSize: fontSizes.extraLarge,
     color: colors.textPrimary,
