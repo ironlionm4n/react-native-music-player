@@ -1,7 +1,7 @@
 import {StyleSheet, View, Text, ScrollView, FlatList} from 'react-native';
 import React from 'react';
 import {colors} from '../constants/colors';
-import Header from '../components/Header';
+import HomeHeader from '../components/HomeHeader';
 import {spacing} from '../constants/dimensions';
 import {fontFamilies, fontSizes} from '../constants/fonts';
 import SongCard from '../components/SongCard';
@@ -11,7 +11,7 @@ import FloatingPlayer from '../components/FloatingPlayer';
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Header />
+      <HomeHeader />
       <FlatList
         data={[
           {headerText: 'Recommended for you'},

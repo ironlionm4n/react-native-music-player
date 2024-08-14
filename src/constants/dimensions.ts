@@ -14,8 +14,15 @@ export const spacing = {
 };
 
 export const imageSizes = {
-  small: 100,
+  small: 160,
   medium: 200,
   large: 300,
   xlarge: 400,
+};
+
+export const borderRadii = {
+  small: 4,
+  medium: 8,
+  large: 12,
+  xlarge: 16,
 };

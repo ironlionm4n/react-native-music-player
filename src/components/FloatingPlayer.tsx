@@ -14,10 +14,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Slider} from 'react-native-awesome-slider';
 import {useSharedValue} from 'react-native-reanimated';
+import MovingText from './MovingText';
+import {useNavigation} from '@react-navigation/native';
 
 const FloatingPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(true);
-
+  const navigation = useNavigation();
   const min = useSharedValue(0);
   const max = useSharedValue(1);
   const progress = useSharedValue(0.5);
@@ -26,9 +28,15 @@ const FloatingPlayer = () => {
     setIsPlaying(!isPlaying);
   };
 
+  const handleOpenPlayerScreen = () => {
+    // Open Player Screen
+    navigation.navigate('Player');
+  };
+
   return (
     <View>
       <Slider
+        style={{width: '95%', alignSelf: 'center'}}
         progress={progress}
         minimumValue={min}
         maximumValue={max}
@@ -36,12 +44,23 @@ const FloatingPlayer = () => {
           maximumTrackTintColor: colors.maxTintColor,
           minimumTrackTintColor: colors.minTintColor,
         }}
-        containerStyle={{height: 8}}
+        containerStyle={{height: 8, width: '100%', borderRadius: 4}}
         renderThumb={() => (
-          <Ionicons name="headset" size={20} color={colors.iconPrimary} />
+          // <Ionicons name="headset" size={20} color={colors.iconPrimary} />
+          <View
+            style={{
+              width: 20,
+              height: 20,
+              borderRadius: 20,
+              backgroundColor: colors.textSecondary,
+            }}
+          />
         )}
       />
-      <TouchableOpacity style={styles.container} activeOpacity={0.85}>
+      <TouchableOpacity
+        style={styles.container}
+        activeOpacity={0.85}
+        onPress={handleOpenPlayerScreen}>
         <Image
           source={{
             uri: 'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/001/733/325x325/follow-back-1722556857-SviEzbx69z.jpg',
@@ -49,7 +68,14 @@ const FloatingPlayer = () => {
           style={{width: 60, aspectRatio: 1, borderRadius: 6}}
         />
         <View style={styles.songDetails}>
-          <Text style={styles.songTitle}>Song Name</Text>
+          <MovingText
+            text="Song Name that ;lksdjf "
+            animationThreshold={20}
+            style={styles.songTitle}
+          />
+          {/* <Text style={styles.songTitle}>
+            Song Name that is way to long to fitf
+          </Text> */}
           <Text style={styles.artistTitle}>Artist Name</Text>
         </View>
         <View style={styles.iconContainer}>
@@ -104,8 +130,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   songDetails: {
+    flex: 1,
     marginLeft: 10,
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   songTitle: {
     fontSize: fontSizes.large,
@@ -122,7 +150,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flex: 1,
-    marginLeft: 60,
     paddingHorizontal: 2,
   },
   iconButton: {

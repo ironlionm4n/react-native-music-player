@@ -3,38 +3,41 @@ import React from 'react';
 import {iconSizes, spacing} from '../constants/dimensions';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {colors} from '../constants/colors';
+import {useNavigation} from '@react-navigation/native';
 
-const Header = () => {
+const LikedHeader = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <Entypo.Button
-        name="menu"
+        name="arrow-long-left"
         size={iconSizes.medium}
         color={colors.iconPrimary}
         backgroundColor={colors.background}
         onPress={() => {
-          Alert.alert('Menu button pressed');
+          if (navigation.canGoBack()) navigation.goBack();
         }}
       />
       <Entypo.Button
-        name="magnifying-glass"
-        size={iconSizes.medium}
+        name="sound-mix"
+        size={iconSizes.small}
         color={colors.iconPrimary}
         backgroundColor={colors.background}
         onPress={() => {
-          Alert.alert('Search button pressed');
+          Alert.alert('Sound Mix button pressed');
         }}
       />
     </View>
   );
 };
 
-export default Header;
+export default LikedHeader;
 
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
     paddingHorizontal: spacing.medium,
     paddingTop: spacing.xsmall,

@@ -3,7 +3,7 @@ import React from 'react';
 import {colors} from '../constants/colors';
 import {spacing} from '../constants/dimensions';
 import {fontSizes, fontFamilies} from '../constants/fonts';
-import Header from './Header';
+import HomeHeader from './HomeHeader';
 import SongCard from './SongCard';
 
 interface SongCarouselProps {
